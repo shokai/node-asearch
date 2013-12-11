@@ -1,7 +1,7 @@
 {
   "name": "asearch",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.0.1",
+  "private": false,
   "description": "ambiguity text search",
   "bin": "",
   "main": "lib/asearch.js",
@@ -40,7 +40,7 @@
     "search"
   ],
   "bugs": {
-    "url": "https://gist.github.com/7871491"
+    "url": "https://github.com/shokai/node-asearch/issues"
   },
-  "homepage": "https://gist.github.com/7871491"
+  "homepage": "https://github.com/shokai/node-asearch"
 }
