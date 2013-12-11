@@ -1,0 +1,46 @@
+{
+  "name": "asearch",
+  "version": "0.0.0",
+  "private": true,
+  "description": "ambiguity text search",
+  "bin": "",
+  "main": "lib/asearch.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "author": "Sho Hashimoto <hashimoto@shokai.org>",
+  "license": "BSD-2-Clause",
+  "devDependencies": {
+    "mocha": "*",
+    "grunt": "*",
+    "grunt-simple-mocha": "*",
+    "grunt-notify": "*",
+    "grunt-contrib-coffee": "*",
+    "grunt-coffeelint": "git+https://github.com/geta6/grunt-coffeelint",
+    "grunt-contrib-watch": "git+https://github.com/gruntjs/grunt-contrib-watch"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "grunt": "~0.4.2",
+    "grunt-notify": "~0.2.16",
+    "grunt-coffeelint": "~0.0.7",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-coffee": "~0.7.0",
+    "grunt-simple-mocha": "~0.4.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shokai/node-asearch.git"
+  },
+  "keywords": [
+    "ambiguity",
+    "text",
+    "search"
+  ],
+  "bugs": {
+    "url": "https://gist.github.com/7871491"
+  },
+  "homepage": "https://gist.github.com/7871491"
+}
