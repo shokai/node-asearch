@@ -24,7 +24,7 @@ module.exports = class Asearch
     mask = INITPAT
     for c in [0...MAXCHAR]
       @shiftpat[c] = 0
-    for c in jspack.Unpack 'B', pat
+    for c in @unpack(pat)
       if c is 0x20
         @epsilon |= mask
       else
@@ -35,8 +35,6 @@ module.exports = class Asearch
     @acceptpat = mask
     return @
 
-  initstate: ->
-    return [].concat [INITPAT, 0, 0, 0]
 
   state: (state = null, str = '') ->
     state = @initstate() if state is null
@@ -44,7 +42,7 @@ module.exports = class Asearch
     i1 = state[1]
     i2 = state[2]
     i3 = state[3]
-    for c in jspack.Unpack 'B', str
+    for c in @unpack(str)
       mask = @shiftpat[c]
       i3 = (i3 & @epsilon) | ((i3 & mask) >>> 1) | (i2 >>> 1) | i2
       i2 = (i2 & @epsilon) | ((i2 & mask) >>> 1) | (i1 >>> 1) | i1
@@ -53,7 +51,20 @@ module.exports = class Asearch
       i1 |= (i0 >>> 1)
       i2 |= (i1 >>> 1)
       i3 |= (i2 >>> 1)
+    return [i0, i1, i2, i3]
+
+  initstate: ->
+    return [INITPAT, 0, 0, 0]
 
   match: (str, ambig = 0) ->
     s = @state @initstate(), str
     return (s[ambig] & @acceptpat) isnt 0
+
+  unpack: (str) ->
+    bytes = []
+    str.split(//).map (c)->
+      code = c.charCodeAt(0)
+      bytes.push((code & 0xFF00) >>> 8) if code > 0xFF
+      bytes.push(code & 0xFF)
+    return bytes
+ 
