@@ -1,6 +1,8 @@
 # Node Asearch
 ambiguity text search for JavaScript
 
+<img src="https://travis-ci.org/shokai/node-asearch.png">
+
 - https://github.com/shokai/node-asearch
 - https://npmjs.org/package/asearch
 
