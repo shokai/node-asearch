@@ -1,5 +1,3 @@
-{jspack} = require 'jspack'
-
 module.exports = class Asearch
 
   INITPAT = 0x80000000
