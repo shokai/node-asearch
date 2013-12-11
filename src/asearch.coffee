@@ -31,7 +31,7 @@ module.exports = class Asearch
         @shiftpat[c] |= mask
         @shiftpat[@toupper c] |= mask
         @shiftpat[@tolower c] |= mask
-        mask >>= 1
+        mask >>>= 1
     @acceptpat = mask
     return @
 
@@ -46,13 +46,13 @@ module.exports = class Asearch
     i3 = state[3]
     for c in jspack.Unpack 'B', str
       mask = @shiftpat[c]
-      i3 = (i3 & @epsilon) | ((i3 & mask) >> 1) | (i2 >> 1) | i2
-      i2 = (i2 & @epsilon) | ((i2 & mask) >> 1) | (i1 >> 1) | i1
-      i1 = (i1 & @epsilon) | ((i1 & mask) >> 1) | (i0 >> 1) | i0
-      i0 = (i0 & @epsilon) | ((i0 & mask) >> 1)
-      i1 |= (i0 >> 1)
-      i2 |= (i1 >> 1)
-      i3 |= (i2 >> 1)
+      i3 = (i3 & @epsilon) | ((i3 & mask) >>> 1) | (i2 >>> 1) | i2
+      i2 = (i2 & @epsilon) | ((i2 & mask) >>> 1) | (i1 >>> 1) | i1
+      i1 = (i1 & @epsilon) | ((i1 & mask) >>> 1) | (i0 >>> 1) | i0
+      i0 = (i0 & @epsilon) | ((i0 & mask) >>> 1)
+      i1 |= (i0 >>> 1)
+      i2 |= (i1 >>> 1)
+      i3 |= (i2 >>> 1)
 
   match: (str, ambig = 0) ->
     s = @state @initstate(), str
