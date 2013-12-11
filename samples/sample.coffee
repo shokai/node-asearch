@@ -17,7 +17,7 @@ a = new Asearch 'cheese burger'
 console.log a.match 'cheese burger' # => true
 console.log a.match 'chess burger', 2 # => true
 console.log a.match 'chess', 2 # => false
-console.log a.match 'burger', 4 # => true
+console.log a.match 'burger', 4 # => false (but should be true)
 
 console.log "== example 3"
 a = new Asearch '漢字文字列'
