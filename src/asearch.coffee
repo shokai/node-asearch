@@ -57,7 +57,3 @@ module.exports = class Asearch
   match: (str, ambig = 0) ->
     s = @state @initstate(), str
     return (s[ambig] & @acceptpat) isnt 0
-
-a = new Asearch 'abcde'
-console.log a.match 'abcde'
-console.log a.match 'abXcde', 1
