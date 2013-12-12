@@ -14,7 +14,7 @@ ambiguity text search for JavaScript
 ## Usage
 
 ```coffee
-Asearch = require 'Asearch'
+Asearch = require 'asearch'
 
 a = new Asearch 'abcde'
 

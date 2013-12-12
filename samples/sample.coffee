@@ -1,6 +1,5 @@
-# Asearch = require 'Asearch'
-
 Asearch = require '../'
+# Asearch = require 'asearch'
 
 console.log "== example 1"
 a = new Asearch 'abcde'
