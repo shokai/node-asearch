@@ -34,8 +34,7 @@ module.exports = class Asearch
     return @
 
 
-  state: (state = null, str = '') ->
-    state = @initstate() if state is null
+  state: (state=@initstate(), str = '') ->
     i0 = state[0]
     i1 = state[1]
     i2 = state[2]

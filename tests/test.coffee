@@ -8,18 +8,34 @@ describe 'pattern "abcde"', ->
 
   a = new Asearch 'abcde'
 
-  it 'should match', ->
-    assert.equal a.match('abcd'), true
+  it 'should match "abcde"', ->
+    assert.equal a.match('abcde'), true
+
+  it 'should match "aBCDe"', ->
     assert.equal a.match('aBCDe'), true
+
+  it 'should match ("abXcde",1)', ->
     assert.equal a.match('abXcde',1), true
+
+  it 'should match ("ab?de",1)', ->
     assert.equal a.match('ab?de',1), true
+
+  it 'should match ("abde",1)', ->
     assert.equal a.match('abde',1), true
+
+  it 'should match (abXXde,2)', ->
     assert.equal a.match('abXXde',2), true
 
-  it 'should not match', ->
+  it 'should not match "abXcde"', ->
     assert.equal a.match('abXcde'), false
+
+  it 'should not match "ab?de"', ->
     assert.equal a.match('ab?de'), false
+
+  it 'should not match "abde"', ->
     assert.equal a.match('abde'), false
+
+  it 'should not match ("abXXde",1)', ->
     assert.equal a.match('abXXde',1), false
 
 
@@ -27,121 +43,58 @@ describe 'pattern "ab de"', ->
 
   a = new Asearch 'ab de'
 
-  it 'should match', ->
+  it 'should match ("abcde")', ->
     assert.equal a.match('abcde'), true
+
+  it 'should match ("abccde")', ->
     assert.equal a.match('abccde'), true
+
+  it 'should match ("abXXXXXXXde")', ->
     assert.equal a.match('abXXXXXXXde'), true
+
+  it 'should match ("abcccccxe",1)', ->
     assert.equal a.match('abcccccxe',1), true
 
-  it 'should not match', ->
+  it 'should not match "abcccccxe"', ->
     assert.equal a.match('abcccccxe'), false
 
 
-describe 'state transition of pattern "abcde"', ->
+describe 'pattern "abcde"', ->
 
   a = new Asearch 'abcde'
 
-  it 'should have state', ->
-    initstate = a.initstate
-    laststate = a.state(initstate, 'abcde')
-    assert.notEqual(laststate[0] & a.acceptpat, 0)
-
-
-describe 'state of pattern "abc"', ->
-
-  a = new Asearch 'abc'
-
-  it 'should have state', ->
-    state = a.initstate
-    assert.notEqual state[0], 0
-    assert.equal state[1], 0
-    assert.equal state[2], 0
-
-
-describe 'ambiguity argument of "match()" method', ->
-
-  a = new Asearch 'abcde'
-
-  it 'should match', ->
+  it 'should match "abcde"', ->
     assert.equal a.match('abcde'), true
-    assert.equal a.match('abcde',1), true
-    assert.equal a.match('abcd',1), true
 
-  it 'should not match', ->
+  it 'should match ("abcde",1)', ->
+    assert.equal a.match('abcde',1), true
+
+  it 'should not match "abcd"', ->
     assert.equal a.match('abcd'), false
 
-
-describe 'test of complex internal states', ->
-
-  a = new Asearch 'abcde'
- 
-  it 'should test complex states', ->
-    initstate = a.initstate
-    laststate = a.state(initstate,'abcde')
-    assert.notEqual (laststate[0] & a.acceptpat), 0
-    laststate = a.state(initstate,'abcdf')   # 1文字置換
-    assert.equal (laststate[0] & a.acceptpat), 0
-    assert.notEqual (laststate[1] & a.acceptpat), 0
-    assert.notEqual (laststate[2] & a.acceptpat), 0
-    laststate = a.state(initstate,'abde')    # 1文字欠損
-    assert.equal (laststate[0] & a.acceptpat), 0
-    assert.notEqual (laststate[1] & a.acceptpat), 0
-    assert.notEqual (laststate[2] & a.acceptpat), 0
-    laststate = a.state(initstate,'abcfg')   # 2文字置換
-    assert.equal (laststate[0] & a.acceptpat), 0
-    assert.equal (laststate[1] & a.acceptpat), 0
-    assert.notEqual (laststate[2] & a.acceptpat), 0
-    laststate = a.state(initstate,'abe')     # 2文字欠損
-    assert.equal (laststate[0] & a.acceptpat), 0
-    assert.equal (laststate[1] & a.acceptpat), 0
-    assert.notEqual (laststate[2] & a.acceptpat), 0
-    laststate = a.state(initstate,'axbcde')  # 1文字追加
-    assert.equal (laststate[0] & a.acceptpat), 0
-    assert.notEqual (laststate[1] & a.acceptpat), 0
-    assert.notEqual (laststate[2] & a.acceptpat), 0
-    laststate = a.state(initstate,'axbcyde') # 2文字追加
-    assert.equal (laststate[0] & a.acceptpat), 0
-    assert.equal (laststate[1] & a.acceptpat), 0
-    assert.notEqual (laststate[2] & a.acceptpat), 0
-    laststate = a.state(initstate,'ABCDF')   # 大文字
-    assert.equal (laststate[0] & a.acceptpat), 0
-    assert.notEqual (laststate[1] & a.acceptpat), 0
-    assert.notEqual (laststate[2] & a.acceptpat), 0
-
-describe 'test of wildcard', ->
-
-  a = new Asearch ' abc def'
-
-  it 'is wildcard test', ->
-    initstate = a.initstate
-    laststate = a.state(initstate,'abcdef')
-    assert.notEqual (laststate[0] & a.acceptpat), 0
-    initstate = a.initstate
-    laststate = a.state(initstate,'abcXXXXdef')
-    assert.notEqual (laststate[0] & a.acceptpat), 0
-    initstate = a.initstate
-    laststate = a.state(initstate,'abcXXXXYYY')
-    assert.equal (laststate[0] & a.acceptpat), 0
-    initstate = a.initstate
-    laststate = a.state(initstate,'abcXXXXde')
-    assert.equal (laststate[0] & a.acceptpat), 0
-    assert.notEqual (laststate[1] & a.acceptpat), 0
-    assert.notEqual (laststate[2] & a.acceptpat), 0
-    initstate = a.initstate
-    laststate = a.state(initstate,'ZZZZZabcdef')
-    assert.notEqual (laststate[0] & a.acceptpat), 0
+  it 'should match ("abcd",1)', ->
+    assert.equal a.match('abcd',1), true
 
 
-describe 'test of Kanji', ->
+describe 'pattern "漢字文字列"', ->
 
   a = new Asearch '漢字文字列'
 
-  it 'is Kanji test', ->
-    initstate = a.initstate
-    laststate = a.state(initstate,'漢字文字列')
-    assert.notEqual (laststate[0] & a.acceptpat), 0
-    laststate = a.state(initstate,'漢字文字')
-    assert.equal (laststate[0] & a.acceptpat), 0
-    laststate = a.state(initstate,'漢字!文字列')
-    assert.equal (laststate[0] & a.acceptpat), 0
-    assert.notEqual (laststate[1] & a.acceptpat), 0
+  it 'should match "漢字文字列"', ->
+    assert.equal a.match('漢字文字列'), true
+
+  it 'should not match "漢字文字"', ->
+    assert.equal a.match('漢字文字'), false
+
+  it 'should match ("漢字文字",2)', ->
+    assert.equal a.match('漢字文字',2), true
+
+  it 'should not match "漢字文字烈"', ->
+    assert.equal a.match("漢字文字烈"), false
+
+  it 'should match ("漢字文字烈",2)', ->
+    assert.equal a.match("漢字文字烈",2), true
+
+  it 'should not match ("漢和辞典",2)', ->
+    assert.equal a.match("漢和辞典",2), false
+
