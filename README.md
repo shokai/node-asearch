@@ -35,7 +35,6 @@ a = new Asearch 'cheese burger'
 console.log a.match 'cheese burger' # => true
 console.log a.match 'chess burger', 2 # => true
 console.log a.match 'chess', 2 # => false
-console.log a.match 'burger', 4 # => false (but should be true, this is bug of current version)
 ```
 
 <img src="http://gyazo.com/cbbabaf5f48f99a236b129b3df804081.png">
