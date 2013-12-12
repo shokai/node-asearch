@@ -2,6 +2,7 @@ module.exports = class Asearch
 
   INITPAT = 0x80000000
   MAXCHAR = 0x100
+  INITSTATE = [INITPAT, 0, 0, 0]
 
   isupper: (c) ->
     return (c >= 0x41) and (c <= 0x5a)
@@ -34,7 +35,7 @@ module.exports = class Asearch
     return @
 
 
-  state: (state=@initstate(), str = '') ->
+  state: (state=INITSTATE, str = '') ->
     i0 = state[0]
     i1 = state[1]
     i2 = state[2]
@@ -50,11 +51,9 @@ module.exports = class Asearch
       i3 |= (i2 >>> 1)
     return [i0, i1, i2, i3]
 
-  initstate: ->
-    return [INITPAT, 0, 0, 0]
-
   match: (str, ambig = 0) ->
-    s = @state @initstate(), str
+    s = @state INITSTATE, str
+    ambig = INITSTATE.length-1 unless ambig < INITSTATE.length
     return (s[ambig] & @acceptpat) isnt 0
 
   unpack: (str) ->
