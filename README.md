@@ -57,4 +57,5 @@ console.log a.match '漢字文字烈', 2 # => true
     $ cd node-asearch
     $ npm i
     $ npm i -g grunt-cli
-    $ grunt
+    $ grunt test
+    $ grunt watch
