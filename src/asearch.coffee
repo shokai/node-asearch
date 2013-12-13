@@ -54,11 +54,11 @@ module.exports = class Asearch
   match: (str, ambig = 0) ->
     s = @state INITSTATE, str
     ambig = INITSTATE.length-1 unless ambig < INITSTATE.length
-    return (s[ambig] & @acceptpat) isnt 0
+    return (s[ambig] & @acceptpat) != 0
 
   unpack: (str) ->
     bytes = []
-    str.split(//).map (c)->
+    for c in str.split(//)
       code = c.charCodeAt(0)
       bytes.push((code & 0xFF00) >>> 8) if code > 0xFF
       bytes.push(code & 0xFF)
