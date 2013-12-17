@@ -2,6 +2,8 @@
 
 module.exports = (grunt) ->
 
+  require 'coffee-errors'
+
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-coffeelint'
@@ -9,7 +11,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-notify'
 
   grunt.registerTask 'test',    [ 'coffeelint', 'coffee', 'simplemocha' ]
-  grunt.registerTask 'default', [ 'coffeelint', 'coffee', 'simplemocha', 'watch' ]
+  grunt.registerTask 'default', [ 'test', 'watch' ]
 
   grunt.initConfig
 
@@ -26,11 +28,10 @@ module.exports = (grunt) ->
         no_unnecessary_fat_arrows:
           level: 'ignore'
       dist:
-        files: [{
-          expand: yes
-          cwd: 'src/'
-          src: [ '**/*.coffee' ]
-        }]
+        files: [
+          { expand: yes, cwd: 'src/', src: [ '**/*.coffee' ] }
+          { expand: yes, cwd: 'tests/', src: [ '**/*.coffee' ] }
+        ]
 
     coffee:
       dist:
@@ -55,5 +56,5 @@ module.exports = (grunt) ->
       options:
         interrupt: yes
       dist:
-        files: [ 'src/**/*.coffee' ]
+        files: [ 'src/**/*.coffee', 'tests/**/*.coffee' ]
         tasks: [ 'test' ]

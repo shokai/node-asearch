@@ -11,6 +11,8 @@
   "author": "Sho Hashimoto <hashimoto@shokai.org>",
   "license": "BSD-2-Clause",
   "devDependencies": {
+    "coffee-errors": "*",
+    "coffee-script": "*",
     "mocha": "*",
     "grunt": "*",
     "grunt-simple-mocha": "*",
