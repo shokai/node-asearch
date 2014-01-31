@@ -1,4 +1,4 @@
-module.exports = class Asearch
+class Asearch
 
   INITPAT = 0x80000000
   MAXCHAR = 0x100
@@ -63,4 +63,8 @@ module.exports = class Asearch
       bytes.push((code & 0xFF00) >>> 8) if code > 0xFF
       bytes.push(code & 0xFF)
     return bytes
- 
+
+if module? and module.exports?
+  module.exports = Asearch
+else if window?
+  window.Asearch = Asearch
