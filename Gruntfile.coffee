@@ -3,14 +3,17 @@
 module.exports = (grunt) ->
 
   require 'coffee-errors'
+  path = require 'path'
 
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-watch'
+  grunt.loadNpmTasks 'grunt-contrib-uglify'
   grunt.loadNpmTasks 'grunt-coffeelint'
   grunt.loadNpmTasks 'grunt-simple-mocha'
   grunt.loadNpmTasks 'grunt-notify'
 
-  grunt.registerTask 'test',    [ 'coffeelint', 'coffee', 'simplemocha' ]
+  grunt.registerTask 'build',   [ 'coffeelint', 'coffee', 'uglify' ]
+  grunt.registerTask 'test',    [ 'build', 'simplemocha' ]
   grunt.registerTask 'default', [ 'test', 'watch' ]
 
   grunt.initConfig
@@ -41,6 +44,16 @@ module.exports = (grunt) ->
           src: [ '**/*.coffee' ]
           dest: 'lib/'
           ext: '.js'
+        }]
+
+    uglify:
+      release:
+        files: [{
+          expand: yes
+          cwd: 'lib/'
+          src: [ '*.js' ]
+          dest: path.resolve()
+          ext: '.min.js'
         }]
 
     simplemocha:
