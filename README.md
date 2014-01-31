@@ -1,7 +1,7 @@
 # Node Asearch
 ambiguity text search for JavaScript
 
-<a href="https://travis-ci.org/shokai/node-asearch"><img src="https://travis-ci.org/shokai/node-asearch.png"></a>
+[![Build Status](https://travis-ci.org/shokai/node-asearch.png?branch=master)](https://travis-ci.org/shokai/node-asearch)
 
 - https://github.com/shokai/node-asearch
 - https://npmjs.org/package/asearch
