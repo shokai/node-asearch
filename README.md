@@ -52,11 +52,15 @@ console.log a.match '漢字文字烈', 2 # => true
 ```
 
 ### for browser
+
+- https://github.com/shokai/node-asearch/tree/master/samples/web
+
 ```html
-<script src="asearch.js"></script>
+<script src="asearch.min.js"></script>
 ```
 ```javascript
 a = new Asearch('abcde');
+a.match('abcd');
 ```
 
 
