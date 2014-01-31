@@ -1,0 +1,1 @@
+../../lib/asearch.js
