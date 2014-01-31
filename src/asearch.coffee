@@ -58,7 +58,7 @@ class Asearch
 
   unpack: (str) ->
     bytes = []
-    for c in str.split(//)
+    for c in str.split('')
       code = c.charCodeAt(0)
       bytes.push((code & 0xFF00) >>> 8) if code > 0xFF
       bytes.push(code & 0xFF)
