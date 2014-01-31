@@ -18,13 +18,13 @@ Asearch = require 'asearch'
 
 a = new Asearch 'abcde'
 
-console.log a.match 'abcde' # => true
-console.log a.match 'AbCdE' # => true
-console.log a.match 'abcd' # => false
-console.log a.match 'abcd', 1 # => true
+console.log a.match 'abcde'    # => true
+console.log a.match 'AbCdE'    # => true
+console.log a.match 'abcd'     # => false
+console.log a.match 'abcd', 1  # => true
 console.log a.match 'ab de', 1 # => true
-console.log a.match 'abe', 1 # => false
-console.log a.match 'abe', 2 # => true
+console.log a.match 'abe', 1   # => false
+console.log a.match 'abe', 2   # => true
 ```
 
 ### Typo
@@ -32,9 +32,10 @@ console.log a.match 'abe', 2 # => true
 ```coffee
 a = new Asearch 'cheese burger'
 
-console.log a.match 'cheese burger' # => true
+console.log a.match 'cheese burger'   # => true
+console.log a.match 'chess burger'    # => false
 console.log a.match 'chess burger', 2 # => true
-console.log a.match 'chess', 2 # => false
+console.log a.match 'chess', 2        # => false
 ```
 
 <img src="http://gyazo.com/cbbabaf5f48f99a236b129b3df804081.png">
@@ -48,6 +49,14 @@ a = new Asearch '漢字文字列'
 console.log a.match '漢字文字列' # => true
 console.log a.match '漢字文字烈' # => false
 console.log a.match '漢字文字烈', 2 # => true
+```
+
+### for browser
+```html
+<script src="asearch.js"></script>
+```
+```javascript
+a = new Asearch('abcde');
 ```
 
 
