@@ -8,6 +8,9 @@ describe 'pattern "abcde"', ->
 
   a = new Asearch 'abcde'
 
+  it 'should have property "source"', ->
+    assert.equal a.source, 'abcde'
+
   it 'should match "abcde"', ->
     assert.equal a.match('abcde'), true
 

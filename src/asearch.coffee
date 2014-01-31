@@ -16,14 +16,14 @@ module.exports = class Asearch
   toupper: (c) ->
     return if (@islower c) then (c - 0x20) else c
 
-  constructor: (pat) ->
+  constructor: (@source) ->
     @shiftpat = []
     @epsilon = 0
     @acceptpat = 0
     mask = INITPAT
     for c in [0...MAXCHAR]
       @shiftpat[c] = 0
-    for c in @unpack(pat)
+    for c in @unpack(@source)
       if c is 0x20
         @epsilon |= mask
       else
