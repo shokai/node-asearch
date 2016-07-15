@@ -64,6 +64,8 @@ class Asearch
       bytes.push(code & 0xFF)
     return bytes
 
+
+
 if module? and module.exports?
   module.exports = Asearch
 else if window?
