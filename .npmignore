@@ -1,4 +1,7 @@
-src
-tests
+src/
+tmp/
+tests/
+samples/
+node_modules/
 Gruntfile.coffee
 .travis.yml
