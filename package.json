@@ -12,21 +12,20 @@
   "license": "BSD-2-Clause",
   "devDependencies": {
     "coffee-errors": "*",
-    "coffee-script": "*",
-    "mocha": "*",
+    "coffee-script": "^1.10.0",
     "grunt": "*",
-    "grunt-simple-mocha": "*",
-    "grunt-notify": "*",
-    "grunt-contrib-coffee": "*",
     "grunt-coffeelint": "*",
+    "grunt-contrib-coffee": "*",
+    "grunt-contrib-uglify": "*",
     "grunt-contrib-watch": "git+https://github.com/gruntjs/grunt-contrib-watch",
-    "grunt-contrib-uglify": "*"
+    "grunt-notify": "*",
+    "grunt-simple-mocha": "*",
+    "mocha": "*"
   },
   "directories": {
     "test": "tests"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/shokai/node-asearch.git"
