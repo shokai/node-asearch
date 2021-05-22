@@ -26,7 +26,7 @@ module.exports = function Asearch (source) {
   }
   acceptpat = mask
 
-  function state (state=INITSTATE, str = '') {
+  function getState (state=INITSTATE, str = '') {
     let i0 = state[0]
     let i1 = state[1]
     let i2 = state[2]
@@ -54,11 +54,11 @@ module.exports = function Asearch (source) {
   }
 
   function match (str, ambig = 0) {
-    const s = state(INITSTATE, str)
+    const state = getState(INITSTATE, str)
     if (ambig >= INITSTATE.length) {
       ambig = INITSTATE.length-1
     }
-    return (s[ambig] & acceptpat) !== 0
+    return (state[ambig] & acceptpat) !== 0
   }
 
   match.source = source
