@@ -1,5 +1,5 @@
 const INITPAT = 0x80000000
-const MAXCHAR = 0x100
+const MAXCHAR = 0x10000
 const INITSTATE = [INITPAT, 0, 0, 0]
 const isupper = c => (c >= 0x41) && (c <= 0x5a)
 const islower = c => (c >= 0x61) && (c <= 0x7a)
@@ -48,10 +48,7 @@ module.exports = function Asearch (source) {
     const bytes = []
     for (let c of str.split('')) {
       const code = c.charCodeAt(0)
-      if (code > 0xFF) {
-        bytes.push((code & 0xFF00) >>> 8)
-      }
-      bytes.push(code & 0xFF)
+      bytes.push(code)
     }
     return bytes
   }
