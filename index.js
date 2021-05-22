@@ -61,7 +61,7 @@ module.exports = function Asearch (source) {
     if (ambig >= INITSTATE.length) {
       ambig = INITSTATE.length-1
     }
-    return (s[ambig] & acceptpat) != 0
+    return (s[ambig] & acceptpat) !== 0
   }
 
   match.source = source
