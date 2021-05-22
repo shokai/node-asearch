@@ -63,5 +63,8 @@ module.exports = function Asearch (source) {
     }
     return (s[ambig] & acceptpat) != 0
   }
+
+  match.source = source
+
   return match
 }
