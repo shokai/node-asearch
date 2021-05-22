@@ -3,7 +3,7 @@
   "version": "0.0.7",
   "private": false,
   "description": "ambiguity text search",
-  "main": "src/asearch.js",
+  "main": "index.js",
   "scripts": {
     "test": "mocha tests/test.js"
   },
