@@ -1,5 +1,5 @@
 const INITPAT = 0x80000000
-const MAXCHAR = 0x100
+const MAXCHAR = 0x10000
 const INITSTATE = [INITPAT, 0, 0, 0]
 const isupper = c => (c >= 0x41) && (c <= 0x5a)
 const islower = c => (c >= 0x61) && (c <= 0x7a)
@@ -26,7 +26,7 @@ module.exports = function Asearch (source) {
   }
   acceptpat = mask
 
-  function state (state=INITSTATE, str = '') {
+  function getState (state=INITSTATE, str = '') {
     let i0 = state[0]
     let i1 = state[1]
     let i2 = state[2]
@@ -48,20 +48,17 @@ module.exports = function Asearch (source) {
     const bytes = []
     for (let c of str.split('')) {
       const code = c.charCodeAt(0)
-      if (code > 0xFF) {
-        bytes.push((code & 0xFF00) >>> 8)
-      }
-      bytes.push(code & 0xFF)
+      bytes.push(code)
     }
     return bytes
   }
 
   function match (str, ambig = 0) {
-    const s = state(INITSTATE, str)
+    const state = getState(INITSTATE, str)
     if (ambig >= INITSTATE.length) {
       ambig = INITSTATE.length-1
     }
-    return (s[ambig] & acceptpat) !== 0
+    return (state[ambig] & acceptpat) !== 0
   }
 
   match.source = source

@@ -1,5 +1,5 @@
 # Node Asearch
-ambiguity text search for JavaScript
+Approximate pattern matching on JavaScript
 
 [![Build Status](https://travis-ci.org/shokai/node-asearch.png?branch=master)](https://travis-ci.org/shokai/node-asearch)
 
@@ -13,29 +13,29 @@ ambiguity text search for JavaScript
 
 ## Usage
 
-```coffee
-Asearch = require 'asearch'
+```js
+const Asearch = require('asearch')
 
-a = new Asearch 'abcde'
+const match = Asearch('abcde')
 
-console.log a.match 'abcde'    # => true
-console.log a.match 'AbCdE'    # => true
-console.log a.match 'abcd'     # => false
-console.log a.match 'abcd', 1  # => true
-console.log a.match 'ab de', 1 # => true
-console.log a.match 'abe', 1   # => false
-console.log a.match 'abe', 2   # => true
+console.log(match('abcde'))    // => true
+console.log(match('AbCdE'))    // => true
+console.log(match('abcd'))     // => false
+console.log(match('abcd', 1))  // => true
+console.log(match('ab de', 1)) // => true
+console.log(match('abe', 1))   // => false
+console.log(a.match('abe', 2))   // => true
 ```
 
 ### Typo
 
-```coffee
-a = new Asearch 'cheese burger'
+```js
+const match = Asearch('cheese burger')
 
-console.log a.match 'cheese burger'   # => true
-console.log a.match 'chess burger'    # => false
-console.log a.match 'chess burger', 2 # => true
-console.log a.match 'chess', 2        # => false
+console.log(match('cheese burger'))   // => true
+console.log(match('chess burger'))    // => false
+console.log(match('chess burger', 2)) // => true
+console.log(match('chess', 2))        // => false
 ```
 
 <img src="http://gyazo.com/cbbabaf5f48f99a236b129b3df804081.png">
@@ -43,24 +43,12 @@ console.log a.match 'chess', 2        # => false
 
 ### 2 byte chars
 
-```coffee
-a = new Asearch '漢字文字列'
+```js
+const match = Asearch('漢字文字列')
 
-console.log a.match '漢字文字列' # => true
-console.log a.match '漢字文字烈' # => false
-console.log a.match '漢字文字烈', 2 # => true
-```
-
-### for browser
-
-- https://github.com/shokai/node-asearch/tree/master/samples/web
-
-```html
-<script src="asearch.min.js"></script>
-```
-```javascript
-a = new Asearch('abcde');
-a.match('abcd');
+console.log(match('漢字文字列'))    // => true
+console.log(match('漢字の文字列'))  // => false
+console.log(match('漢字の字列', 1)) // => true
 ```
 
 
@@ -69,6 +57,4 @@ a.match('abcd');
     $ git clone https://github.com/shokai/node-asearch.git
     $ cd node-asearch
     $ npm i
-    $ npm i -g grunt-cli
-    $ grunt test
-    $ grunt watch
+    $ npm test
