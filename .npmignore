@@ -1,7 +1,5 @@
-src/
 tmp/
 tests/
 samples/
 node_modules/
-Gruntfile.coffee
-.travis.yml
+package-lock.json
