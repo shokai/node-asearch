@@ -46,7 +46,7 @@ const match = Asearch('漢字文字列')
 
 console.log(match('漢字文字列'))    // => true
 console.log(match('漢字の文字列'))  // => false
-console.log(match('漢字の字列', 1)) // => true
+console.log(match('漢字の文字列', 1)) // => true
 ```
 
 

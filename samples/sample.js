@@ -20,5 +20,5 @@ console.log(match2('chess', 2)) // => false
 console.log("== example 3")
 const match3 = Asearch('漢字文字列')
 console.log(match3('漢字文字列')) // => true
-console.log(match3('漢字文字烈')) // => false
-console.log(match3('漢字文字烈', 2)) // => true
+console.log(match3('漢字の文字列')) // => false
+console.log(match3('漢字の文字列', 1)) // => true
