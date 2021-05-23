@@ -1,8 +1,6 @@
 # Node Asearch
 Approximate pattern matching on JavaScript
 
-[![Build Status](https://travis-ci.org/shokai/node-asearch.png?branch=master)](https://travis-ci.org/shokai/node-asearch)
-
 - https://github.com/shokai/node-asearch
 - https://npmjs.org/package/asearch
 
