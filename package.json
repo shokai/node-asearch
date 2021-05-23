@@ -2,7 +2,7 @@
   "name": "asearch",
   "version": "0.0.7",
   "private": false,
-  "description": "ambiguity text search",
+  "description": "Approximate pattern matching",
   "main": "index.js",
   "scripts": {
     "test": "mocha tests/test.js"
