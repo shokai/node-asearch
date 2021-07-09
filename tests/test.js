@@ -1,5 +1,6 @@
 const assert = require('assert')
 const Asearch = require('../')
+const { cliMain } = require('../cliMain')
 
 describe('pattern "abcde"', function () {
 
@@ -131,5 +132,25 @@ describe('pattern "漢字文字列"', function () {
 
   it('should not match ("漢和辞典", 2)', function () {
     assert.equal(match("漢和辞典", 2), false)
+  })
+})
+
+describe('cli with pattern "abcde"', function () {
+  it('should match "abcde"', function () {
+    assert.equal(cliMain(['node', 'cli.js', 'abcde', 'abcde']), 0)
+  })
+
+  it('should match ("abXcde",1)', function () {
+    assert.equal(cliMain(['node', 'cli.js', 'abcde', 'abXcde', '1']), 0)
+  })
+
+  it('should not match "abXcde"', function () {
+    assert.equal(cliMain(['node', 'cli.js', 'abcde', 'abXcde']), 1)
+  })
+
+  it('should return the argument error', function () {
+    assert.equal(cliMain(['node', 'cli.js', 'abcde']), 2)
+    assert.equal(cliMain(['node', 'cli.js', 'abcde', 'abcde', '-1']), 2)
+    assert.equal(cliMain(['node', 'cli.js', 'abcde', 'abcde', '4']), 2)
   })
 })

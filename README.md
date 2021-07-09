@@ -11,6 +11,8 @@ Approximate pattern matching on JavaScript
 
 ## Usage
 
+### API
+
 ```js
 const Asearch = require('asearch')
 
@@ -23,6 +25,22 @@ console.log(match('abcd', 1))  // => true
 console.log(match('ab de', 1)) // => true
 console.log(match('abe', 1))   // => false
 console.log(a.match('abe', 2))   // => true
+```
+
+### CLI
+
+> Usage: asearch left right [ambig]
+
+```bash
+$ asearch abcde abcde; echo $?
+0  # true
+$ asearch abcde abcd; echo $?
+1  # false
+$ asearch abcde abcd 1; echo $?
+0  # true
+$ asearch abcde; echo $?
+Usage: asearch left right [ambig]
+2  # Argument error
 ```
 
 ### Typo
