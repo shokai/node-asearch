@@ -10,7 +10,7 @@
   "author": "Sho Hashimoto <hashimoto@shokai.org>",
   "license": "BSD-2-Clause",
   "devDependencies": {
-    "mocha": "^8.4.0"
+    "mocha": "^10.1.0"
   },
   "directories": {
     "test": "tests"
